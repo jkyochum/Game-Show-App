@@ -1,1 +1,1 @@
-Game Show Type App / treehouse project 6
+Letter Guessing Game / treehouse project 6
