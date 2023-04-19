@@ -12,14 +12,19 @@ const phrases = [
 let missed = 0;
 
 function getRandomPhraseAsArray(arr) {
-    const random = Math.celi(Math.random() * arr.length + 1) - 1;
-    const newPhraseArray = arr.split();
+    const random = Math.ceil(Math.random() * arr.length) - 1;
+    let newPhraseArray = [];
+    for (let phrase in arr) {
+
+        newPhraseArray = phrase.split();
+    }
     for (let item in newPhraseArray) {
         console.log(item);
     }
+    return newPhraseArray;
 }
 
-// getRandomPhraseAsArray(phrases);
+getRandomPhraseAsArray(phrases);
 
 startButton.addEventListener('click', () => {
     startScreen.style.display = 'none';
