@@ -18,6 +18,15 @@ function getRandomPhraseAsArray(arr) {
     return newPhraseArray;
 }
 
+function addPhraseToDisplay(arr) {
+    const letter = /[A-Z]/;
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i].test(letter)) {
+
+        }
+    }
+}
+
 console.log(getRandomPhraseAsArray(phrases));
 
 startButton.addEventListener('click', () => {
