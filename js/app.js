@@ -36,7 +36,10 @@ function addPhraseToDisplay(arr) {
 }
 
 function checkLetter(btn) {
+    const letterCollection = document.getElementsByClassName('letter');
+    for (let letter of letterCollection) {
 
+    }
 }
 
 const lettersArray = getRandomPhraseAsArray(phrases);
