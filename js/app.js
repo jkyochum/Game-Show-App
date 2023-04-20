@@ -2,6 +2,7 @@ const board = document.querySelector('#qwerty');
 const phrase = document.querySelector('#phrase');
 const startScreen = document.querySelector('#overlay');
 const startButton = document.querySelector('.btn__reset');
+const gameButton = document.querySelectorAll('button');
 const ul = phrase.firstElementChild;
 const phrases = [
     'I LIKE TURTLES',
@@ -41,6 +42,8 @@ function checkLetter(btn) {
 
     }
 }
+
+
 
 const lettersArray = getRandomPhraseAsArray(phrases);
 addPhraseToDisplay(lettersArray);
