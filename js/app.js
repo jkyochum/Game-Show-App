@@ -2,6 +2,7 @@ const board = document.querySelector('#qwerty');
 const phrase = document.querySelector('#phrase');
 const startScreen = document.querySelector('#overlay');
 const startButton = document.querySelector('.btn__reset');
+const ul = phrase.firstElementChild;
 const phrases = [
     'I LIKE TURTLES',
     'HELLO WORLD',
@@ -21,6 +22,7 @@ function getRandomPhraseAsArray(arr) {
 function addPhraseToDisplay(arr) {
     const letter = /[A-Z]/;
     for (let i = 0; i < arr.length; i++) {
+        const li = document.createElement('li');
         if (arr[i].test(letter)) {
 
         }
