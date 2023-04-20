@@ -23,13 +23,17 @@ function addPhraseToDisplay(arr) {
     const letter = /[A-Z]/;
     for (let i = 0; i < arr.length; i++) {
         const li = document.createElement('li');
-        if (arr[i].test(letter)) {
-
+        if (letter.test(arr[i])) {
+            li.textContent = arr[i];
+            li.className = 'letter';
+            li.style.marginTop = '2px';
+            ul.appendChild(li);
         }
     }
 }
 
-console.log(getRandomPhraseAsArray(phrases));
+const lettersArray = getRandomPhraseAsArray(phrases);
+addPhraseToDisplay(lettersArray);
 
 startButton.addEventListener('click', () => {
     startScreen.style.display = 'none';

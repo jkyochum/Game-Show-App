@@ -29,7 +29,9 @@ body {
   height: 100vh;
 }
 
-li, ol, ul {
+li,
+ol,
+ul {
   padding: 0;
   display: inline-block;
 }
@@ -83,7 +85,7 @@ button {
   width: 65px;
   padding: 20px 1px 0 1px;
   margin-right: 2px;
-  color: transparent;
+  /* color: transparent; */
   background: var(--color-neutral-light);
   border-radius: 5px;
 }
