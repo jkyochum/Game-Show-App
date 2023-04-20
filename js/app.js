@@ -24,11 +24,14 @@ function addPhraseToDisplay(arr) {
     for (let i = 0; i < arr.length; i++) {
         const li = document.createElement('li');
         if (letter.test(arr[i])) {
-            li.textContent = arr[i];
             li.className = 'letter';
-            li.style.marginTop = '2px';
-            ul.appendChild(li);
         }
+        else {
+            li.className = 'space';
+        }
+        li.textContent = arr[i];
+        // li.style.marginTop = '2px';
+        ul.appendChild(li);
     }
 }
 
