@@ -35,6 +35,10 @@ function addPhraseToDisplay(arr) {
     }
 }
 
+function checkLetter(btn) {
+
+}
+
 const lettersArray = getRandomPhraseAsArray(phrases);
 addPhraseToDisplay(lettersArray);
 
