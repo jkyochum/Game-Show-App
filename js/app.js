@@ -36,12 +36,32 @@ function addPhraseToDisplay(arr) {
     }
 }
 
-function checkLetter() {
+function checkLetter(btn) {
     const letterCollection = document.getElementsByClassName('letter');
     for (let letter of letterCollection) {
-        console.log(letter);
+        letter = letter.textContent.toLowerCase();
+        if (btn === letter) {
+            letter.className = 'show';
+        }
+        else {
+            return null;
+        }
     }
 }
+
+board.addEventListener('click', (event) => {
+    if (event.target.tagName === 'BUTTON') {
+        const button = event.target.textContent;
+        checkLetter(button);
+    }
+});
+
+// document.addEventListener('click', (e) => {
+//     console.log(e);
+
+// });
+
+
 
 
 
