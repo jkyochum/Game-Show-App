@@ -37,11 +37,14 @@ function addPhraseToDisplay(arr) {
 }
 
 function checkLetter(btn) {
+    // console.log(btn.textContent);
     const letterCollection = document.getElementsByClassName('letter');
-    for (let letter of letterCollection) {
-        letter = letter.textContent.toLowerCase();
-        if (btn === letter) {
-            letter.className = 'show';
+    for (let i = 0; i < letterCollection.length; i++) {
+        let letter = letterCollection[i].textContent.toLowerCase();
+        // console.log(letter)
+        if (btn.textContent === letter) {
+            // letter.className = 'show';
+            console.log(letter);
         }
         else {
             return null;
@@ -49,9 +52,12 @@ function checkLetter(btn) {
     }
 }
 
+const letterCollection = document.getElementsByClassName('letter');
+
+
 board.addEventListener('click', (event) => {
     if (event.target.tagName === 'BUTTON') {
-        const button = event.target.textContent;
+        const button = event.target;
         checkLetter(button);
     }
 });
