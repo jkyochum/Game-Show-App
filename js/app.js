@@ -36,10 +36,10 @@ function addPhraseToDisplay(arr) {
     }
 }
 
-function checkLetter(btn) {
+function checkLetter() {
     const letterCollection = document.getElementsByClassName('letter');
     for (let letter of letterCollection) {
-
+        console.log(letter);
     }
 }
 
