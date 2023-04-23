@@ -53,6 +53,10 @@ function checkLetter(btn) {
     return letterFound;
 }
 
+function checkWin() {
+
+}
+
 board.addEventListener('click', (event) => {
     if (event.target.tagName === 'BUTTON') {
         const button = event.target;
@@ -62,13 +66,13 @@ board.addEventListener('click', (event) => {
         if (!checkLetter(button)) {
             missed++;
             console.log(missed);
-            console.log(hearts);
             for (let i = 0; i < hearts.length; i++) {
+                hearts[missed - 1].firstChild.setAttribute('src', '../images/lostHeart.png');
+
                 if (missed === hearts.length) {
                     console.log('you lose');
                 }
                 else {
-                    hearts[missed - 1].firstChild.setAttribute('src', '../images/lostHeart.png');
                 }
             }
 
