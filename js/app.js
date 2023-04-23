@@ -40,7 +40,6 @@ function addPhraseToDisplay(arr) {
 
 function checkLetter(btn) {
     const letterCollection = document.getElementsByClassName('letter');
-
     let letterFound = null;
     for (let i = 0; i < letterCollection.length; i++) {
         let letter = letterCollection[i].textContent.toLowerCase();
@@ -52,9 +51,28 @@ function checkLetter(btn) {
     }
     return letterFound;
 }
+let liClass = ul.children;
 
 function checkWin() {
+    let letterClass = 0;
+    let showClass = 0;
+    let liClass = document.querySelector('li').className;
 
+    if (liClass = 'letter') {
+        letterClass++;
+    }
+    else if (liClass = 'show') {
+        showClass++;
+    }
+
+    if (missed === hearts.length) {
+        startScreen.className = 'lose';
+        startScreen.style.display = '';
+    }
+    else if (letterClass === showClass) {
+        startScreen.className = 'win';
+        startScreen.style.display = '';
+    }
 }
 
 board.addEventListener('click', (event) => {
@@ -69,16 +87,12 @@ board.addEventListener('click', (event) => {
             for (let i = 0; i < hearts.length; i++) {
                 hearts[missed - 1].firstChild.setAttribute('src', '../images/lostHeart.png');
 
-                if (missed === hearts.length) {
-                    console.log('you lose');
-                }
-                else {
-                }
             }
 
 
         }
     }
+    checkWin();
 });
 
 // document.addEventListener('click', (e) => {
