@@ -43,13 +43,12 @@ function checkLetter(btn) {
         let letter = letterCollection[i].textContent.toLowerCase();
         // console.log(letter)
         if (btn.textContent === letter) {
-            // letter.className = 'show';
+            // let li = letterCollection[i].firstChild;
+            letterCollection[i].classList.add('show');
             console.log(letter);
         }
-        else {
-            return null;
-        }
     }
+
 }
 
 const letterCollection = document.getElementsByClassName('letter');
@@ -58,6 +57,8 @@ const letterCollection = document.getElementsByClassName('letter');
 board.addEventListener('click', (event) => {
     if (event.target.tagName === 'BUTTON') {
         const button = event.target;
+        button.className = 'chosen';
+        button.disabled = 'true';
         checkLetter(button);
     }
 });
