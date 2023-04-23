@@ -11,6 +11,8 @@ const phrases = [
     'WHEN IN ROME',
     'A BIRD IN THE HAND IS WORTH TWO IN THE BUSH'
 ];
+const scoreboard = document.querySelector('#scoreboard');
+const hearts = scoreboard.getElementsByClassName('tries');
 let missed = 0;
 
 function getRandomPhraseAsArray(arr) {
@@ -38,14 +40,17 @@ function addPhraseToDisplay(arr) {
 
 function checkLetter(btn) {
     const letterCollection = document.getElementsByClassName('letter');
+
+    let letterFound = null;
     for (let i = 0; i < letterCollection.length; i++) {
         let letter = letterCollection[i].textContent.toLowerCase();
         if (btn.textContent === letter) {
             letterCollection[i].classList.add('show');
-            const correctLetter = btn.textContent;
+            letterFound = true;
+
         }
     }
-    // return correctLetter;
+    return letterFound;
 }
 
 board.addEventListener('click', (event) => {
@@ -53,7 +58,22 @@ board.addEventListener('click', (event) => {
         const button = event.target;
         button.className = 'chosen';
         button.disabled = 'true';
-        checkLetter(button);
+
+        if (!checkLetter(button)) {
+            missed++;
+            console.log(missed);
+            console.log(hearts);
+            for (let i = 0; i < hearts.length; i++) {
+                if (missed === hearts.length) {
+                    console.log('you lose');
+                }
+                else {
+                    hearts[missed - 1].firstChild.setAttribute('src', '../images/lostHeart.png');
+                }
+            }
+
+
+        }
     }
 });
 
