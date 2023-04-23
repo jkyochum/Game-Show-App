@@ -31,28 +31,22 @@ function addPhraseToDisplay(arr) {
             li.className = 'space';
         }
         li.textContent = arr[i];
-        // li.style.marginTop = '2px';
+        li.style.marginTop = '2px';
         ul.appendChild(li);
     }
 }
 
 function checkLetter(btn) {
-    // console.log(btn.textContent);
     const letterCollection = document.getElementsByClassName('letter');
     for (let i = 0; i < letterCollection.length; i++) {
         let letter = letterCollection[i].textContent.toLowerCase();
-        // console.log(letter)
         if (btn.textContent === letter) {
-            // let li = letterCollection[i].firstChild;
             letterCollection[i].classList.add('show');
             console.log(letter);
         }
     }
 
 }
-
-const letterCollection = document.getElementsByClassName('letter');
-
 
 board.addEventListener('click', (event) => {
     if (event.target.tagName === 'BUTTON') {
