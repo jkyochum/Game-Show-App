@@ -14,6 +14,7 @@ const phrases = [
 const scoreboard = document.querySelector('#scoreboard');
 const hearts = scoreboard.getElementsByClassName('tries');
 let missed = 0;
+let win;
 
 function getRandomPhraseAsArray(arr) {
     const random = Math.ceil(Math.random() * arr.length) - 1;
@@ -56,7 +57,7 @@ function checkLetter(btn) {
 function checkWin() {
     let letterClass = 0;
     let showClass = 0;
-    let title = over
+    let title = overlay.firstElementChild;
     let letterList = ul.children;
 
     for (let item of letterList) {
@@ -68,14 +69,19 @@ function checkWin() {
         }
     }
 
-
     if (missed === hearts.length) {
         overlay.className = 'lose';
         overlay.style.display = '';
+        title.textContent = `
+            Game Over
+        `;
     }
     else if (letterClass === showClass) {
         overlay.className = 'win';
         overlay.style.display = '';
+        title.textContent = `
+            You Win!
+        `;
     }
 }
 
