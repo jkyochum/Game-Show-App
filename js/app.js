@@ -2,7 +2,6 @@ const board = document.querySelector('#qwerty');
 const phrase = document.querySelector('#phrase');
 const overlay = document.querySelector('#overlay');
 const startButton = document.querySelector('.btn__reset');
-const gameButton = document.querySelectorAll('button');
 const ul = phrase.firstElementChild;
 const phrases = [
     'I LIKE TURTLES',
@@ -56,6 +55,7 @@ function checkWin() {
     let showClass = 0;
     let title = overlay.firstElementChild;
     let letterList = ul.children;
+    const newGameButton = document.createElement('a');
 
     for (let item of letterList) {
         if (item.classList.contains('letter')) {
@@ -72,7 +72,10 @@ function checkWin() {
         title.textContent = `
             Game Over
         `;
-        endGame = true;
+        overlay.appendChild(newGameButton);
+        newGameButton.className = 'btn__reset';
+        newGameButton.textContent = 'Start Game';
+        startButton.remove();
     }
     else if (letterClass === showClass) {
         overlay.className = 'win';
@@ -80,7 +83,6 @@ function checkWin() {
         title.textContent = `
             You Win!
         `;
-        endGame = true;
     }
 }
 
@@ -107,6 +109,12 @@ board.addEventListener('click', (event) => {
 // });
 
 startButton.addEventListener('click', () => {
+    overlay.style.display = 'none';
+    const lettersArray = getRandomPhraseAsArray(phrases);
+    addPhraseToDisplay(lettersArray);
+});
+
+newGameButton.addEventListener('click', () => {
     overlay.style.display = 'none';
     const lettersArray = getRandomPhraseAsArray(phrases);
     addPhraseToDisplay(lettersArray);
