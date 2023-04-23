@@ -14,7 +14,6 @@ const phrases = [
 const scoreboard = document.querySelector('#scoreboard');
 const hearts = scoreboard.getElementsByClassName('tries');
 let missed = 0;
-let win;
 
 function getRandomPhraseAsArray(arr) {
     const random = Math.ceil(Math.random() * arr.length) - 1;
@@ -47,12 +46,10 @@ function checkLetter(btn) {
         if (btn.textContent === letter) {
             letterCollection[i].classList.add('show');
             letterFound = true;
-
         }
     }
     return letterFound;
 }
-// let liClass = ul.children;
 
 function checkWin() {
     let letterClass = 0;
@@ -75,6 +72,7 @@ function checkWin() {
         title.textContent = `
             Game Over
         `;
+        endGame = true;
     }
     else if (letterClass === showClass) {
         overlay.className = 'win';
@@ -82,6 +80,7 @@ function checkWin() {
         title.textContent = `
             You Win!
         `;
+        endGame = true;
     }
 }
 
@@ -96,10 +95,7 @@ board.addEventListener('click', (event) => {
             console.log(missed);
             for (let i = 0; i < hearts.length; i++) {
                 hearts[missed - 1].firstChild.setAttribute('src', '../images/lostHeart.png');
-
             }
-
-
         }
     }
     checkWin();
@@ -110,13 +106,8 @@ board.addEventListener('click', (event) => {
 
 // });
 
-
-
-
-
-const lettersArray = getRandomPhraseAsArray(phrases);
-addPhraseToDisplay(lettersArray);
-
 startButton.addEventListener('click', () => {
     overlay.style.display = 'none';
+    const lettersArray = getRandomPhraseAsArray(phrases);
+    addPhraseToDisplay(lettersArray);
 });
