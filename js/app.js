@@ -1,6 +1,6 @@
 const board = document.querySelector('#qwerty');
 const phrase = document.querySelector('#phrase');
-const startScreen = document.querySelector('#overlay');
+const overlay = document.querySelector('#overlay');
 const startButton = document.querySelector('.btn__reset');
 const gameButton = document.querySelectorAll('button');
 const ul = phrase.firstElementChild;
@@ -51,27 +51,31 @@ function checkLetter(btn) {
     }
     return letterFound;
 }
-let liClass = ul.children;
+// let liClass = ul.children;
 
 function checkWin() {
     let letterClass = 0;
     let showClass = 0;
-    let liClass = document.querySelector('li').className;
+    let title = over
+    let letterList = ul.children;
 
-    if (liClass = 'letter') {
-        letterClass++;
+    for (let item of letterList) {
+        if (item.classList.contains('letter')) {
+            letterClass++;
+        }
+        if (item.classList.contains('show')) {
+            showClass++;
+        }
     }
-    else if (liClass = 'show') {
-        showClass++;
-    }
+
 
     if (missed === hearts.length) {
-        startScreen.className = 'lose';
-        startScreen.style.display = '';
+        overlay.className = 'lose';
+        overlay.style.display = '';
     }
     else if (letterClass === showClass) {
-        startScreen.className = 'win';
-        startScreen.style.display = '';
+        overlay.className = 'win';
+        overlay.style.display = '';
     }
 }
 
@@ -108,5 +112,5 @@ const lettersArray = getRandomPhraseAsArray(phrases);
 addPhraseToDisplay(lettersArray);
 
 startButton.addEventListener('click', () => {
-    startScreen.style.display = 'none';
+    overlay.style.display = 'none';
 });
