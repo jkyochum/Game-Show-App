@@ -42,10 +42,10 @@ function checkLetter(btn) {
         let letter = letterCollection[i].textContent.toLowerCase();
         if (btn.textContent === letter) {
             letterCollection[i].classList.add('show');
-            console.log(letter);
+            const correctLetter = btn.textContent;
         }
     }
-
+    // return correctLetter;
 }
 
 board.addEventListener('click', (event) => {
