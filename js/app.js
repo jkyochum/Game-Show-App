@@ -89,7 +89,6 @@ function checkWin() {
         endGame = true;
     }
 }
-const usedLetters = document.getElementsByClassName('chosen');
 
 function resetGame() {
     const oldPhrase = ul.children;
@@ -102,6 +101,9 @@ function resetGame() {
         usedLetters[i].className = '';
     }
     missed = 0;
+    for (let heart of hearts) {
+        heart.firstChild.setAttribute('src', '../images/liveheart.png');
+    }
 }
 
 board.addEventListener('click', (event) => {
@@ -112,7 +114,6 @@ board.addEventListener('click', (event) => {
 
         if (!checkLetter(button)) {
             missed++;
-            console.log(missed);
             for (let i = 0; i < hearts.length; i++) {
                 hearts[missed - 1].firstChild.setAttribute('src', '../images/lostHeart.png');
             }
