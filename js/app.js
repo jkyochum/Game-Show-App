@@ -57,7 +57,6 @@ function checkWin() {
     let showClass = 0;
     let title = overlay.firstElementChild;
     let letterList = ul.children;
-    const newGameButton = document.createElement('a');
 
     for (let item of letterList) {
         if (item.classList.contains('letter')) {
@@ -71,21 +70,13 @@ function checkWin() {
     if (missed === hearts.length) {
         overlay.className = 'lose';
         overlay.style.display = '';
-        title.textContent = `
-            Game Over
-        `;
+        title.textContent = `Game Over`;
         endGame = true;
-        // overlay.appendChild(newGameButton);
-        // newGameButton.className = 'btn__reset';
-        // newGameButton.textContent = 'Start Game';
-        // startButton.remove();
     }
     else if (letterClass === showClass) {
         overlay.className = 'win';
         overlay.style.display = '';
-        title.textContent = `
-            You Win!
-        `;
+        title.textContent = `You Win!`;
         endGame = true;
     }
 }
@@ -135,9 +126,3 @@ startButton.addEventListener('click', () => {
     const lettersArray = getRandomPhraseAsArray(phrases);
     addPhraseToDisplay(lettersArray);
 });
-
-// newGameButton.addEventListener('click', () => {
-//     overlay.style.display = 'none';
-//     const lettersArray = getRandomPhraseAsArray(phrases);
-//     addPhraseToDisplay(lettersArray);
-// });
