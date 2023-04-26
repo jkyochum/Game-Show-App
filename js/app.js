@@ -98,8 +98,8 @@ function resetGame() {
         oldPhrase[i].remove();
     }
     for (let i = usedLetters.length - 1; i >= 0; i--) {
+        usedLetters[i].removeAttribute('disabled');
         usedLetters[i].className = '';
-        usedLetters[i].disabled = 'false';
     }
     missed = 0;
 }
