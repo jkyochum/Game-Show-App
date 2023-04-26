@@ -71,12 +71,14 @@ function checkWin() {
         overlay.className = 'lose';
         overlay.style.display = '';
         title.textContent = `Game Over`;
+        startButton.textContent = 'Try Again'
         endGame = true;
     }
     else if (letterClass === showClass) {
         overlay.className = 'win';
         overlay.style.display = '';
         title.textContent = `You Win!`;
+        startButton.textContent = 'Play Again'
         endGame = true;
     }
 }
