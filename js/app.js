@@ -2,6 +2,7 @@ const board = document.querySelector('#qwerty');
 const phrase = document.querySelector('#phrase');
 const overlay = document.querySelector('#overlay');
 const startButton = document.querySelector('.btn__reset');
+const gameButtons = document.querySelectorAll('button');
 const ul = phrase.firstElementChild;
 const phrases = [
     'I LIKE TURTLES',
@@ -13,6 +14,7 @@ const phrases = [
 const scoreboard = document.querySelector('#scoreboard');
 const hearts = scoreboard.getElementsByClassName('tries');
 let missed = 0;
+let endGame = false;
 
 function getRandomPhraseAsArray(arr) {
     const random = Math.ceil(Math.random() * arr.length) - 1;
@@ -72,10 +74,11 @@ function checkWin() {
         title.textContent = `
             Game Over
         `;
-        overlay.appendChild(newGameButton);
-        newGameButton.className = 'btn__reset';
-        newGameButton.textContent = 'Start Game';
-        startButton.remove();
+        endGame = true;
+        // overlay.appendChild(newGameButton);
+        // newGameButton.className = 'btn__reset';
+        // newGameButton.textContent = 'Start Game';
+        // startButton.remove();
     }
     else if (letterClass === showClass) {
         overlay.className = 'win';
@@ -83,7 +86,22 @@ function checkWin() {
         title.textContent = `
             You Win!
         `;
+        endGame = true;
     }
+}
+const usedLetters = document.getElementsByClassName('chosen');
+
+function resetGame() {
+    const oldPhrase = ul.children;
+    const usedLetters = document.getElementsByClassName('chosen');
+    for (let i = oldPhrase.length - 1; i >= 0; i--) {
+        oldPhrase[i].remove();
+    }
+    for (let i = usedLetters.length - 1; i >= 0; i--) {
+        usedLetters[i].className = '';
+        usedLetters[i].disabled = 'false';
+    }
+    missed = 0;
 }
 
 board.addEventListener('click', (event) => {
@@ -109,13 +127,16 @@ board.addEventListener('click', (event) => {
 // });
 
 startButton.addEventListener('click', () => {
+    if (endGame) {
+        resetGame();
+    }
     overlay.style.display = 'none';
     const lettersArray = getRandomPhraseAsArray(phrases);
     addPhraseToDisplay(lettersArray);
 });
 
-newGameButton.addEventListener('click', () => {
-    overlay.style.display = 'none';
-    const lettersArray = getRandomPhraseAsArray(phrases);
-    addPhraseToDisplay(lettersArray);
-});
+// newGameButton.addEventListener('click', () => {
+//     overlay.style.display = 'none';
+//     const lettersArray = getRandomPhraseAsArray(phrases);
+//     addPhraseToDisplay(lettersArray);
+// });
