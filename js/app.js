@@ -39,13 +39,19 @@ function addPhraseToDisplay(arr) {
     }
 }
 
+const letterCollection = document.getElementsByClassName('letter');
+
 function checkLetter(btn) {
     const letterCollection = document.getElementsByClassName('letter');
     let letterFound = null;
     for (let i = 0; i < letterCollection.length; i++) {
         let letter = letterCollection[i].textContent.toLowerCase();
         if (btn.textContent === letter) {
+
             letterCollection[i].classList.add('show');
+            letterCollection[i].style.transform = 'rotateY(360deg)';
+            letterCollection[i].style.transition = '1s';
+            overlay.style.zIndex = '1';
             letterFound = true;
         }
     }
