@@ -36,6 +36,7 @@ function addPhraseToDisplay(arr) {
         li.textContent = arr[i];
         li.style.marginTop = '2px';
         ul.appendChild(li);
+        ul.style.userSelect = 'none';
     }
 }
 
