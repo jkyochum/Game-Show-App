@@ -15,11 +15,27 @@ const scoreboard = document.querySelector('#scoreboard');
 const hearts = scoreboard.getElementsByClassName('tries');
 let missed = 0;
 let endGame = false;
+const usedPhraseArray = [];
 
 function getRandomPhraseAsArray(arr) {
-    const random = Math.ceil(Math.random() * arr.length) - 1;
-    const randomPhrase = arr[random];
+    let random = Math.ceil(Math.random() * arr.length) - 1;
+    let randomPhrase = arr[random];
+    if (usedPhraseArray.length > 0) {
+        if (usedPhraseArray.length === arr.length) {
+            usedPhraseArray.length = 0;
+        }
+        else {
+            for (let i = 0; i < usedPhraseArray.length; i++) {
+                while (randomPhrase.includes(usedPhraseArray[i])) {
+                    random = Math.ceil(Math.random() * arr.length) - 1;
+                    randomPhrase = arr[random];
+                }
+            }
+        }
+    }
+    usedPhraseArray.push(randomPhrase);
     const newPhraseArray = randomPhrase.split("");
+    console.log(usedPhraseArray);
     return newPhraseArray;
 }
 
@@ -39,8 +55,6 @@ function addPhraseToDisplay(arr) {
         ul.style.userSelect = 'none';
     }
 }
-
-const letterCollection = document.getElementsByClassName('letter');
 
 function checkLetter(btn) {
     const letterCollection = document.getElementsByClassName('letter');
