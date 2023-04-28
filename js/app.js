@@ -17,6 +17,10 @@ let missed = 0;
 let endGame = false;
 const usedPhraseArray = [];
 
+
+//take the phrase array and generate a random phrase from the array
+//each phrase will be different than the last until each phrase in the array is used
+
 function getRandomPhraseAsArray(arr) {
     let random = Math.ceil(Math.random() * arr.length) - 1;
     let randomPhrase = arr[random];
@@ -25,19 +29,19 @@ function getRandomPhraseAsArray(arr) {
             usedPhraseArray.length = 0;
         }
         else {
-            for (let i = 0; i < usedPhraseArray.length; i++) {
-                while (randomPhrase.includes(usedPhraseArray[i])) {
-                    random = Math.ceil(Math.random() * arr.length) - 1;
-                    randomPhrase = arr[random];
-                }
+            while (usedPhraseArray.includes(randomPhrase)) {
+                random = Math.ceil(Math.random() * arr.length) - 1;
+                randomPhrase = arr[random];
             }
         }
     }
     usedPhraseArray.push(randomPhrase);
     const newPhraseArray = randomPhrase.split("");
-    console.log(usedPhraseArray);
     return newPhraseArray;
 }
+
+
+
 
 function addPhraseToDisplay(arr) {
     const letter = /[A-Z]/;
