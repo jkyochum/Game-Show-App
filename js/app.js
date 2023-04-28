@@ -16,6 +16,7 @@ const hearts = scoreboard.getElementsByClassName('tries');
 let missed = 0;
 let endGame = false;
 const usedPhraseArray = [];
+let lastPhraseUsed = '';
 
 
 //take the phrase array and generate a random phrase from the array
@@ -24,19 +25,28 @@ const usedPhraseArray = [];
 function getRandomPhraseAsArray(arr) {
     let random = Math.ceil(Math.random() * arr.length) - 1;
     let randomPhrase = arr[random];
-    if (usedPhraseArray.length > 0) {
-        if (usedPhraseArray.length === arr.length) {
-            usedPhraseArray.length = 0;
-        }
-        else {
-            while (usedPhraseArray.includes(randomPhrase)) {
-                random = Math.ceil(Math.random() * arr.length) - 1;
-                randomPhrase = arr[random];
+    do {
+
+
+        if (usedPhraseArray.length > 0) {
+            if (usedPhraseArray.length === arr.length) {
+                usedPhraseArray.length = 0;
             }
+            else {
+                while (usedPhraseArray.includes(randomPhrase)) {
+                    random = Math.ceil(Math.random() * arr.length) - 1;
+                    randomPhrase = arr[random];
+                }
+            }
+
+            lastPhraseUsed = randomPhrase;
         }
-    }
+    } while (lastPhraseUsed === randomPhrase);
+
     usedPhraseArray.push(randomPhrase);
     const newPhraseArray = randomPhrase.split("");
+    console.log(usedPhraseArray);
+    console.log(`The last phrase used was ${lastPhraseUsed}`);
     return newPhraseArray;
 }
 
