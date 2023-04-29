@@ -15,6 +15,7 @@ const scoreboard = document.querySelector('#scoreboard');
 const hearts = scoreboard.getElementsByClassName('tries');
 let missed = 0;
 let endGame = false;
+let incorrectPuzzle = false;
 const usedPhraseArray = [];
 let lastPhraseUsed = '';
 
@@ -25,28 +26,23 @@ let lastPhraseUsed = '';
 function getRandomPhraseAsArray(arr) {
     let random = Math.ceil(Math.random() * arr.length) - 1;
     let randomPhrase = arr[random];
-    do {
 
-
-        if (usedPhraseArray.length > 0) {
-            if (usedPhraseArray.length === arr.length) {
-                usedPhraseArray.length = 0;
-            }
-            else {
-                while (usedPhraseArray.includes(randomPhrase)) {
-                    random = Math.ceil(Math.random() * arr.length) - 1;
-                    randomPhrase = arr[random];
-                }
-            }
-
-            lastPhraseUsed = randomPhrase;
+    if (usedPhraseArray.length > 0) {
+        if (usedPhraseArray.length === arr.length) {
+            usedPhraseArray.length = 0;
         }
-    } while (lastPhraseUsed === randomPhrase);
+        else {
+            while (usedPhraseArray.includes(randomPhrase)) {
+                random = Math.ceil(Math.random() * arr.length) - 1;
+                randomPhrase = arr[random];
+            }
+        }
+    }
 
+    lastPhraseUsed = randomPhrase;
     usedPhraseArray.push(randomPhrase);
     const newPhraseArray = randomPhrase.split("");
     console.log(usedPhraseArray);
-    console.log(`The last phrase used was ${lastPhraseUsed}`);
     return newPhraseArray;
 }
 
@@ -108,6 +104,7 @@ function checkWin() {
         title.textContent = `Game Over`;
         startButton.textContent = 'Try Again'
         endGame = true;
+        incorrectPuzzle = true;
     }
     else if (letterClass === showClass) {
         overlay.className = 'win';
@@ -115,6 +112,7 @@ function checkWin() {
         title.textContent = `You Win!`;
         startButton.textContent = 'Play Again'
         endGame = true;
+        incorrectPuzzle = false;
     }
 }
 
@@ -133,6 +131,10 @@ function resetGame() {
         heart.firstChild.setAttribute('src', '../images/liveheart.png');
     }
 }
+
+startButton.addEventListener('mouseover', (e) => {
+    startButton.style.cursor = 'pointer';
+});
 
 board.addEventListener('click', (event) => {
     if (event.target.tagName === 'BUTTON') {
@@ -160,6 +162,11 @@ startButton.addEventListener('click', () => {
         resetGame();
     }
     overlay.style.display = 'none';
-    const lettersArray = getRandomPhraseAsArray(phrases);
-    addPhraseToDisplay(lettersArray);
+    if (incorrectPuzzle) {
+        addPhraseToDisplay(lastPhraseUsed);
+    }
+    else {
+        const lettersArray = getRandomPhraseAsArray(phrases);
+        addPhraseToDisplay(lettersArray);
+    }
 });
