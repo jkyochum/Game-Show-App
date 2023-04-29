@@ -22,6 +22,7 @@ let lastPhraseUsed = '';
 
 //take the phrase array and generate a random phrase from the array
 //each phrase will be different than the last until each phrase in the array is used
+//save the last phrase used for a lost game
 
 function getRandomPhraseAsArray(arr) {
     let random = Math.ceil(Math.random() * arr.length) - 1;
@@ -42,12 +43,13 @@ function getRandomPhraseAsArray(arr) {
     lastPhraseUsed = randomPhrase;
     usedPhraseArray.push(randomPhrase);
     const newPhraseArray = randomPhrase.split("");
-    console.log(usedPhraseArray);
     return newPhraseArray;
 }
 
 
-
+//checking the passed array for letters and spaces
+//add appropriate class to letters while looping
+//append the letters to the list to create the board
 
 function addPhraseToDisplay(arr) {
     const letter = /[A-Z]/;
@@ -66,6 +68,11 @@ function addPhraseToDisplay(arr) {
     }
 }
 
+
+//if the letter was found, show it on the board
+//create a transform to spice up the letter reveal
+//if no letter is found, return null and move on
+
 function checkLetter(btn) {
     const letterCollection = document.getElementsByClassName('letter');
     let letterFound = null;
@@ -82,6 +89,10 @@ function checkLetter(btn) {
     }
     return letterFound;
 }
+
+
+//check each letter based on its class and compare the results against the displayed letters' class to see if the game was won
+//check the missed counter and compare the sum to the number of hearts to see if the user lost
 
 function checkWin() {
     let letterClass = 0;
@@ -116,6 +127,9 @@ function checkWin() {
     }
 }
 
+
+//reset the game to default settings
+
 function resetGame() {
     const oldPhrase = ul.children;
     const usedLetters = document.getElementsByClassName('chosen');
@@ -132,9 +146,14 @@ function resetGame() {
     }
 }
 
+
 startButton.addEventListener('mouseover', (e) => {
     startButton.style.cursor = 'pointer';
 });
+
+
+//clicking the keyboard will trigger an event to check if the letter clicked is in the hidden phrase
+//disable the button once clicked and change its style
 
 board.addEventListener('click', (event) => {
     if (event.target.tagName === 'BUTTON') {
@@ -152,10 +171,9 @@ board.addEventListener('click', (event) => {
     checkWin();
 });
 
-// document.addEventListener('click', (e) => {
-//     console.log(e);
 
-// });
+//if the game is over then reset the game
+//if the previous phrase was not guessed then start over with the same phrase, otherwise run the game as normal
 
 startButton.addEventListener('click', () => {
     if (endGame) {
