@@ -53,6 +53,7 @@ function getRandomPhraseAsArray(arr) {
 
 function addPhraseToDisplay(arr) {
     const letter = /[A-Z]/;
+
     for (let i = 0; i < arr.length; i++) {
         const li = document.createElement('li');
         if (letter.test(arr[i])) {
@@ -142,7 +143,7 @@ function resetGame() {
     }
     missed = 0;
     for (let heart of hearts) {
-        heart.firstChild.setAttribute('src', '../images/liveheart.png');
+        heart.firstChild.setAttribute('src', 'images/liveheart.png');
     }
 }
 
@@ -164,7 +165,7 @@ board.addEventListener('click', (event) => {
         if (!checkLetter(button)) {
             missed++;
             for (let i = 0; i < hearts.length; i++) {
-                hearts[missed - 1].firstChild.setAttribute('src', '../images/lostHeart.png');
+                hearts[missed - 1].firstChild.setAttribute('src', 'images/lostHeart.png');
             }
         }
     }
