@@ -42,8 +42,7 @@ function getRandomPhraseAsArray(arr) {
 
     lastPhraseUsed = randomPhrase;
     usedPhraseArray.push(randomPhrase);
-    const newPhraseArray = randomPhrase.split("");
-    return newPhraseArray;
+    return randomPhrase;
 }
 
 
@@ -53,19 +52,36 @@ function getRandomPhraseAsArray(arr) {
 
 function addPhraseToDisplay(arr) {
     const letter = /[A-Z]/;
+    const newPhraseArray = arr.split(" ");  //split into words
 
-    for (let i = 0; i < arr.length; i++) {
-        const li = document.createElement('li');
-        if (letter.test(arr[i])) {
-            li.className = 'letter';
+    for (let i = 0; i < newPhraseArray.length; i++) {
+        const div = document.createElement('div');
+        const newSplitArray = newPhraseArray[i].split(""); //split the words into letters
+
+        for (let j = 0; j < newSplitArray.length; j++) {
+            const li = document.createElement('li');
+            const span = document.createElement('span');
+            if (letter.test(newSplitArray[j])) {
+                li.className = 'letter';
+            }
+            li.textContent = newSplitArray[j];
+            if (j === newSplitArray.length - 1) {
+                div.appendChild(li);
+                div.appendChild(span); //append a span to the div after the last letter
+            }
+            else {
+                div.appendChild(li); //append the new li to the new div inside the ul
+            }
+            li.style.marginTop = '2px';
+            span.style.display = 'inline-block';
+            span.className = 'space';
         }
-        else {
-            li.className = 'space';
-        }
-        li.textContent = arr[i];
-        li.style.marginTop = '2px';
-        ul.appendChild(li);
+
+        ul.appendChild(div); //append the div wrapping the li's
         ul.style.userSelect = 'none';
+        ul.style.display = 'flex'; //flex the parent container
+        ul.style.flexWrap = 'wrap'; //flex-wrap
+        ul.style.justifyContent = 'center'; //center the words
     }
 }
 
@@ -98,8 +114,20 @@ function checkLetter(btn) {
 function checkWin() {
     let letterClass = 0;
     let showClass = 0;
-    let title = overlay.firstElementChild;
-    let letterList = ul.children;
+    const title = overlay.firstElementChild;
+    const wordList = ul.children;
+    let childList;
+    const letterList = [];
+
+    for (let i = 0; i < wordList.length; i++) { //loop through the div list inside ul
+        childList = wordList[i].children;
+        for (let j = 0; j < childList.length; j++) { //loop through the li list inside each div
+
+            if (childList[j].classList.contains('letter')) {
+                letterList.push(childList[j]); //if the class is letter then push to main list item array
+            }
+        }
+    }
 
     for (let item of letterList) {
         if (item.classList.contains('letter')) {
