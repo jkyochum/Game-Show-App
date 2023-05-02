@@ -9,7 +9,8 @@ const phrases = [
     'HELLO WORLD',
     'WHERE THERE IS A WILL THERE IS A WAY',
     'WHEN IN ROME',
-    'A BIRD IN THE HAND IS WORTH TWO IN THE BUSH'
+    'A BIRD IN THE HAND IS WORTH TWO IN THE BUSH',
+    'FORTNITE IS KOOL'
 ];
 const scoreboard = document.querySelector('#scoreboard');
 const hearts = scoreboard.getElementsByClassName('tries');
@@ -55,7 +56,7 @@ function addPhraseToDisplay(arr) {
     const newPhraseArray = arr.split(" ");  //split into words
 
     for (let i = 0; i < newPhraseArray.length; i++) {
-        const div = document.createElement('div');
+        const listItemHolder = document.createElement('ul');
         const newSplitArray = newPhraseArray[i].split(""); //split the words into letters
 
         for (let j = 0; j < newSplitArray.length; j++) {
@@ -65,19 +66,19 @@ function addPhraseToDisplay(arr) {
                 li.className = 'letter';
             }
             li.textContent = newSplitArray[j];
-            if (j === newSplitArray.length - 1) {
-                div.appendChild(li);
-                div.appendChild(span); //append a span to the div after the last letter
+            if (i !== newPhraseArray.length - 1 && j === newSplitArray.length - 1) {
+                listItemHolder.appendChild(li);
+                listItemHolder.appendChild(span); //append a span to the div after the last letter
             }
             else {
-                div.appendChild(li); //append the new li to the new div inside the ul
+                listItemHolder.appendChild(li); //append the new li to the new div inside the ul
             }
             li.style.marginTop = '2px';
             span.style.display = 'inline-block';
             span.className = 'space';
         }
 
-        ul.appendChild(div); //append the div wrapping the li's
+        ul.appendChild(listItemHolder); //append the div wrapping the li's
         ul.style.userSelect = 'none';
         ul.style.display = 'flex'; //flex the parent container
         ul.style.flexWrap = 'wrap'; //flex-wrap
