@@ -8,9 +8,9 @@ const phrases = [
     'I LIKE TURTLES',
     'HELLO WORLD',
     'WHERE THERE IS A WILL THERE IS A WAY',
-    'WHEN IN ROME',
-    'A BIRD IN THE HAND IS WORTH TWO IN THE BUSH',
-    'FORTNITE IS KOOL'
+    // 'WHEN IN ROME',
+    // 'A BIRD IN THE HAND IS WORTH TWO IN THE BUSH',
+    // 'FORTNITE IS KOOL'
 ];
 const scoreboard = document.querySelector('#scoreboard');
 const hearts = scoreboard.getElementsByClassName('tries');
@@ -39,6 +39,13 @@ function getRandomPhraseAsArray(arr) {
                 randomPhrase = arr[random];
             }
         }
+    }
+    if (randomPhrase === lastPhraseUsed) {
+        while (randomPhrase === lastPhraseUsed) {
+            random = Math.ceil(Math.random() * arr.length) - 1;
+            randomPhrase = arr[random];
+        }
+
     }
 
     lastPhraseUsed = randomPhrase;
