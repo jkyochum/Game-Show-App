@@ -5,12 +5,11 @@ const startButton = document.querySelector('.btn__reset');
 const gameButtons = document.querySelectorAll('button');
 const ul = phrase.firstElementChild;
 const phrases = [
-    'I LIKE TURTLES',
+    'BETTER LATE THAN NEVER',
     'HELLO WORLD',
-    'WHERE THERE IS A WILL THERE IS A WAY',
-    // 'WHEN IN ROME',
-    // 'A BIRD IN THE HAND IS WORTH TWO IN THE BUSH',
-    // 'FORTNITE IS KOOL'
+    'A PENNY SAVED IS A PENNY EARNED',
+    'WHEN IN ROME',
+    'A BIRD IN THE HAND IS WORTH TWO IN THE BUSH',
 ];
 const scoreboard = document.querySelector('#scoreboard');
 const hearts = scoreboard.getElementsByClassName('tries');
