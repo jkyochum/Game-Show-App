@@ -62,29 +62,30 @@ function addPhraseToDisplay(arr) {
     const newPhraseArray = arr.split(" ");  //split into words
 
     for (let i = 0; i < newPhraseArray.length; i++) {
-        const listItemHolder = document.createElement('ul');
+        const listItemHolder = document.createElement('li');
         const newSplitArray = newPhraseArray[i].split(""); //split the words into letters
 
         for (let j = 0; j < newSplitArray.length; j++) {
-            const li = document.createElement('li');
+            const div = document.createElement('div');
             const span = document.createElement('span');
             if (letter.test(newSplitArray[j])) {
-                li.className = 'letter';
+                div.className = 'letter';
             }
-            li.textContent = newSplitArray[j];
+            div.textContent = newSplitArray[j];
             if (i !== newPhraseArray.length - 1 && j === newSplitArray.length - 1) {
-                listItemHolder.appendChild(li);
-                listItemHolder.appendChild(span); //append a span to the div after the last letter
+                listItemHolder.appendChild(div);
+                listItemHolder.appendChild(span); //append a span to the li after the last letter
             }
             else {
-                listItemHolder.appendChild(li); //append the new li to the new div inside the ul
+                listItemHolder.appendChild(div); //append the new div to the new li inside the ul
             }
-            li.style.marginTop = '2px';
+            div.style.marginTop = '2px';
+            div.style.display = 'inline-block';
             span.style.display = 'inline-block';
             span.className = 'space';
         }
 
-        ul.appendChild(listItemHolder); //append the div wrapping the li's
+        ul.appendChild(listItemHolder); //append the li wrapping the div's
         ul.style.userSelect = 'none';
         ul.style.display = 'flex'; //flex the parent container
         ul.style.flexWrap = 'wrap'; //flex-wrap
