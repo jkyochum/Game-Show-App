@@ -44,7 +44,6 @@ function getRandomPhraseAsArray(arr) {
             random = Math.ceil(Math.random() * arr.length) - 1;
             randomPhrase = arr[random];
         }
-
     }
 
     lastPhraseUsed = randomPhrase;
