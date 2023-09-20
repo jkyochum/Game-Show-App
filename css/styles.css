@@ -23,9 +23,8 @@
 }
 
 body {
-  display: flex;
-  justify-content: space-evenly;
-  flex-direction: column;
+  display: block;
+  margin: 0;
   height: 100vh;
 }
 
@@ -34,6 +33,26 @@ ol,
 ul {
   padding: 0;
   display: inline-block;
+}
+
+#logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#logo svg {
+  width: 45px;
+  height: 45px;
+}
+
+#logoRect {
+  fill: #5b85b7;
+  fill-opacity: 0.5;
+}
+
+#roundCornerRect {
+  fill-opacity: 0;
 }
 
 h2 {
@@ -63,11 +82,11 @@ button {
   height: 100%;
   max-height: 900px;
   text-align: center;
+  margin-top: 5px;
 }
 
 .section {
   width: 100%;
-  padding: 10px;
 }
 
 /* Title */
@@ -82,7 +101,7 @@ button {
   font-size: var(--font-size-medium);
   height: 40px;
   width: 40px;
-  padding: 20px 1px 0 1px;
+  padding: 10px 0 0;
   margin-right: 2px;
   color: transparent;
   background: var(--color-neutral-light);
@@ -160,4 +179,20 @@ button {
 
 .lose a {
   color: var(--color-lose);
+}
+
+@media screen and (min-width: 768px) {
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  .letter {
+    width: 50px;
+    height: 50px;
+  }
+
+  button {
+    padding: 0.6rem 1rem;
+  }
 }

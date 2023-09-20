@@ -89,6 +89,7 @@ function addPhraseToDisplay(arr) {
         ul.style.display = 'flex'; //flex the parent container
         ul.style.flexWrap = 'wrap'; //flex-wrap
         ul.style.justifyContent = 'center'; //center the words
+        ul.style.gap = '4px';
     }
 }
 
