@@ -179,7 +179,7 @@ function resetGame() {
     }
     missed = 0;
     for (let heart of hearts) {
-        heart.firstChild.setAttribute('src', '../images/liveheart.png');
+        heart.firstChild.setAttribute('src', 'images/liveheart.png');
     }
 }
 
