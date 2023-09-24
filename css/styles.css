@@ -35,12 +35,6 @@ ul {
   display: inline-block;
 }
 
-/* #logo {
-  position: absolute;
-  top: 0;
-  left: 0;
-} */
-
 #logo svg {
   width: 45px;
   height: 45px;
@@ -137,6 +131,11 @@ button {
   background: #FFFFFF;
   border-radius: 5px;
   font-size: var(--font-size-medium);
+}
+
+.tries img {
+  height: 35px;
+  width: 30px;
 }
 
 /* Overlay */
